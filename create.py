@@ -1,15 +1,7 @@
 #!/anaconda3/bin/python
-
-import os
-import cgi
-import view
-# import cgitb
-# cgitb.enable()
-print("Content-Type: text/html")
-print()
+import os, cgi, view
 
 files = os.listdir('data')
-
 form = cgi.FieldStorage()
 if 'id' in form:
     pageId = form["id"].value
@@ -17,14 +9,15 @@ if 'id' in form:
 else:
     pageId = 'Welcome'
     description = 'Hello, web'
-print('''<!doctype html>
+print('''
+<!doctype html>
 <html>
 <head>
-  <title>WEB2 - Welcome</title>
+  <title>WEB2 Python - create</title>
   <meta charset="utf-8">
 </head>
 <body>
-  <h1><a href="index.py">WEB!!!!!</a></h1>
+  <h1><a href="index.py">WEB2 Python</a></h1>
   <ol>
     {listStr}
   </ol>
@@ -37,14 +30,8 @@ print('''<!doctype html>
 </body>
 </html>
 '''.format(
-    title=pageId,
-    desc=description,
-    #    listStr=listStr
-    listStr=view.getList()
+    title = pageId,
+    desc = description,
+    listStr = view.getList()
+    )
 )
-)
-
-# desc=description,
-# listStr=view.getList(),
-# update_link=update_link,
-# delete_action=delete_action))
